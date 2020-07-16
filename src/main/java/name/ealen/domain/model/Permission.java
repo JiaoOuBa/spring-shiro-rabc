@@ -7,19 +7,25 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 
 /**
- * Created by EalenXie on 2019/3/25 11:15.
+ * Created by JiaoOuBa on 2020/3/25 11:15.
  * <p>
  * 权限许可（Permission) 操作 及其能访问url 权限对应一个url地址
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "system_shiro_permission")
+@Table(name = "fc_authority")
 public class Permission extends BaseEntity {
+
+    @Id
+    private String authId;
     @Column(unique = true)
-    private String name;                //权限名 唯一
+    private String authCode;  // 权限代码 唯一
     @Column(unique = true)
-    private String url;                 //访问地址信息 唯一
-    private String description;         //描述信息
+    private String authName;  //权限名 唯一
+    @Column(unique = true)
+    private String url;  //访问地址信息 唯一
+    private Long adminId;
+    private Integer authType;  //权限类型
 
 }

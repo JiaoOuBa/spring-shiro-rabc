@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by EalenXie on 2019/3/25 15:12.
+ * Created by JiaoOuBa on 2020/3/25 15:12.
  */
 @Configuration
 public class ShiroConfig {
@@ -75,7 +75,7 @@ public class ShiroConfig {
         //注册 数据库中所有的权限 及其对应url
         List<Permission> allPermission = permissionRepository.findAll();//数据库中查询所有权限
         for (Permission p : allPermission) {
-            filterMap.put(p.getUrl(), "perms[" + p.getName() + "]");    //拦截器中注册所有的权限
+            filterMap.put(p.getUrl(), "perms[" + p.getAuthName() + "]");    //拦截器中注册所有的权限
         }
         filterMap.put("/static/**", "anon");    //公开访问的资源
         filterMap.put("/open/api/**", "anon");  //公开接口地址

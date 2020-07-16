@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by EalenXie on 2019/3/26 16:03.
+ * Created by JiaoOuBa on 2020/3/26 16:03.
  */
 @Controller
 public class LoginController {

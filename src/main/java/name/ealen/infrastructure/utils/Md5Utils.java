@@ -1,14 +1,21 @@
-package name.ealen;
+package name.ealen.infrastructure.utils;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
-import org.junit.Test;
 
 /**
- * Created by JiaoOuBa on 2020/3/25 18:56.
+ * @Auther ck
+ * @Date 2020/7/16 15:39
+ * @Desc
  */
-public class ShiroTest {
+public class Md5Utils {
 
+    /**
+     * 加密
+     * @param username
+     * @param enablePassword
+     * @return
+     */
     private Object encrypt(String username, String enablePassword) {
 
         String hashAlgorithmName = "md5";//加密算法
@@ -24,26 +31,4 @@ public class ShiroTest {
         return new SimpleHash(hashAlgorithmName, enablePassword, credentialsSalt, hashIterations);
 
     }
-
-
-    /**
-     * 加密测试
-     */
-    @Test
-    public void encryption() {
-
-        Object securePassword = encrypt("ealenxie", "admin");
-
-        System.out.println("ealen的加密后密码 : " + securePassword);
-
-        Object zhangsanPassword = encrypt("zhangsan", "12345");
-
-        System.out.println("zhangsan的加密后密码 : " + zhangsanPassword);
-
-        Object lisiPassword = encrypt("lisi", "12345");
-
-        System.out.println("lisi的加密后密码 : " + lisiPassword);
-    }
-
-
 }

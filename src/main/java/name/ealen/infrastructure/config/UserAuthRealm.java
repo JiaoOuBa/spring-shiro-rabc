@@ -21,7 +21,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
- * Created by EalenXie on 2019/3/25 15:19.
+ * Created by JiaoOuBa on 2020/3/25 15:19.
  */
 @Component
 public class UserAuthRealm extends AuthorizingRealm {
@@ -37,9 +37,9 @@ public class UserAuthRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         User user = (User) principals.getPrimaryPrincipal();
         for (Role role : user.getRoles()) {                                 //获取 角色
-            authorizationInfo.addRole(role.getName());                      //添加 角色
+            authorizationInfo.addRole(role.getRoleName());                      //添加 角色
             for (Permission permission : role.getPermissions()) {           //获取 权限
-                authorizationInfo.addStringPermission(permission.getName());//添加 权限
+                authorizationInfo.addStringPermission(permission.getAuthName());//添加 权限
             }
         }
         return authorizationInfo;
@@ -50,10 +50,10 @@ public class UserAuthRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        String username = (String) token.getPrincipal();
-        User user = userRepository.findByUsername(username);
+        String userName = (String) token.getPrincipal();
+        User user = userRepository.findByUserName(userName);
         if (user == null) return null;
-        String credentials = user.getPasswordSalt() + user.getUsername() + user.getPasswordSalt();//自定义加盐 salt + username + salt
+        String credentials = user.getPasswordSalt() + user.getUserName() + user.getPasswordSalt();//自定义加盐 salt + username + salt
         return new SimpleAuthenticationInfo(
                 user, //用户名
                 user.getPassword(), //密码

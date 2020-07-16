@@ -40,25 +40,22 @@ public class InitDataTest {
     public void addPermissionTest() {
 
         Permission addPermission = new Permission();
-        addPermission.setName("add");
+        addPermission.setAuthId("001");
+        addPermission.setAuthName("新增权限");
+        addPermission.setAuthCode("auth001");
         addPermission.setUrl("/add");
-        addPermission.setDescription("新增权限");
-        addPermission.setCreateTime(new Date());
-        addPermission.setUpdateTime(new Date());
 
         Permission updatePermission = new Permission();
-        updatePermission.setName("update");
+        updatePermission.setAuthId("002");
+        updatePermission.setAuthName("修改权限");
+        updatePermission.setAuthCode("auth001");
         updatePermission.setUrl("/update");
-        updatePermission.setDescription("修改权限");
-        updatePermission.setCreateTime(new Date());
-        updatePermission.setUpdateTime(new Date());
 
         Permission deletePermission = new Permission();
-        deletePermission.setName("delete");
+        deletePermission.setAuthId("003");
+        deletePermission.setAuthName("删除权限");
+        deletePermission.setAuthCode("auth001");
         deletePermission.setUrl("/delete");
-        deletePermission.setDescription("删除权限");
-        deletePermission.setCreateTime(new Date());
-        deletePermission.setUpdateTime(new Date());
 
         permissionRepository.save(addPermission);
         permissionRepository.save(updatePermission);
@@ -75,56 +72,50 @@ public class InitDataTest {
         //管理员 具有所有权限
         List<Permission> permissions = permissionRepository.findAll();
         Role administrator = new Role();
-        administrator.setName("administrator");
-        administrator.setDescription("管理员权限");
+        administrator.setRoleName("administrator");
+        administrator.setRoleId("001");
         administrator.setPermissions(permissions);
-        administrator.setCreateTime(new Date());
-        administrator.setUpdateTime(new Date());
         roleRepository.save(administrator);
         permissions.clear();
 
         //用户只有部分权限 比如只有新增,修改权限
-        Permission addPermission = permissionRepository.findByName("add");
-        Permission updatePermission = permissionRepository.findByName("update");
+        Permission addPermission = permissionRepository.findByAuthName("新增权限");
+        Permission updatePermission = permissionRepository.findByAuthName("修改权限");
         permissions.add(addPermission);
         permissions.add(updatePermission);
         Role user = new Role();
-        user.setName("user");
-        user.setDescription("用户权限");
+        user.setRoleName("user");
+        user.setRoleId("002");
         user.setPermissions(permissions);
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
         roleRepository.save(user);
 
     }
 
     @Test
     public void addUserTest() {
-        //ealen 具有管理员角色
+        //chenkun 具有管理员角色
         List<Role> roles = new ArrayList<>();
-        Role admin = roleRepository.findByName("administrator");
+        Role admin = roleRepository.findByRoleName("administrator");
         roles.add(admin);
-        User ealen = new User();
-        ealen.setUsername("ealenxie");
-        ealen.setPasswordSalt("5371f568a45e5ab1f442c38e0932aef24447139b");
-        ealen.setPassword("dde5deadfcaa4267804832b063f4f8f9");
-        ealen.setCreateTime(new Date());
-        ealen.setUpdateTime(new Date());
-        ealen.setRoles(roles);
-        userRepository.save(ealen);
+        User chenkun = new User();
+        chenkun.setUserId("test001");
+        chenkun.setUserName("chenkun");
+        chenkun.setPasswordSalt("5371f568a45e5ab1f442c38e0932aef24447139b");
+        chenkun.setPassword("dde5deadfcaa4267804832b063f4f8f9");
+        chenkun.setRoles(roles);
+        userRepository.save(chenkun);
         roles.clear();
 
-        //zhangsan 具有用户角色
-        Role user = roleRepository.findByName("user");
+        //lisi 具有用户角色
+        Role user = roleRepository.findByRoleName("user");
         roles.add(user);
-        User zhangsan = new User();
-        zhangsan.setUsername("zhangsan");
-        zhangsan.setPasswordSalt("5371f568a45e5ab1f442c38e0932aef24447139b");
-        zhangsan.setPassword("3b574a9959cd4f8a9a3752d34e0f5f33");
-        zhangsan.setCreateTime(new Date());
-        zhangsan.setUpdateTime(new Date());
-        zhangsan.setRoles(roles);
-        userRepository.save(zhangsan);
+        User lisi = new User();
+        lisi.setUserId("test002");
+        lisi.setUserName("lisi");
+        lisi.setPasswordSalt("5371f568a45e5ab1f442c38e0932aef24447139b");
+        lisi.setPassword("3b574a9959cd4f8a9a3752d34e0f5f33");
+        lisi.setRoles(roles);
+        userRepository.save(lisi);
     }
 
 }

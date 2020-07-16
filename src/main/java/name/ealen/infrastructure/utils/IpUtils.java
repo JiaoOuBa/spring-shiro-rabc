@@ -3,7 +3,7 @@ package name.ealen.infrastructure.utils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by EalenXie on 2019/3/27 13:45.
+ * Created by JiaoOuBa on 2020/3/27 13:45.
  */
 public enum IpUtils {
 

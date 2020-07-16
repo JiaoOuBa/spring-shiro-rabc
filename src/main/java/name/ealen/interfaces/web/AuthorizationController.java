@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by EalenXie on 2019/3/27 10:59.
+ * Created by JiaoOuBa on 2020/3/27 10:59.
  * 需要对应权限，才能访问对应权限的url
  */
 @Controller

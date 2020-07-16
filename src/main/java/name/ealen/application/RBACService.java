@@ -3,7 +3,7 @@ package name.ealen.application;
 import org.springframework.http.ResponseEntity;
 
 /**
- * Created by EalenXie on 2019/3/26 16:23.
+ * Created by JiaoOuBa on 2020/3/26 16:23.
  * RBAC  基于角色的权限访问控制系统 服务说明
  */
 public interface RBACService {

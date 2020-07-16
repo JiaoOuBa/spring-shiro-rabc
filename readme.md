@@ -61,7 +61,7 @@ import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 
 /**
- * Created by EalenXie on 2019/3/25 18:56.
+ * Created by JiaoOuBa on 2020/3/25 18:56.
  */
 public class ShiroTest {
 
