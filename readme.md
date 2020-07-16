@@ -1,7 +1,7 @@
-SpringBoot整合Shiro实现基于角色的权限访问控制(RBAC)系统简单设计从零搭建
+SpringBoot整合Shiro实现基于角色的权限访问控制(RBAC)系统简单设计
 =================
 
-#### 1 . 这是基于SpringBoot和Shiro实现的一个角色权限访问控制(RBAC)的系统。
+#### 1 . 这是基于SpringBoot和Shiro实现的一个角色权限访问控制(RBAC)的系统
 
 基本描述 : 
     
@@ -52,54 +52,7 @@ SpringBoot整合Shiro实现基于角色的权限访问控制(RBAC)系统简单�
 
 #### 5. 代码参考部分 : 
 
-1 . 加密参考 : 
-```java
-package name.ealen;
-
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
-import org.junit.Test;
-
-/**
- * Created by JiaoOuBa on 2020/3/25 18:56.
- */
-public class ShiroTest {
-
-    private Object encrypt(String username, String enablePassword) {
-
-        String hashAlgorithmName = "md5";//加密算法
-
-        String passwordSalt = "5371f568a45e5ab1f442c38e0932aef24447139b";//密钥
-
-        String salt = passwordSalt + username + passwordSalt; //盐值
-
-        int hashIterations = 1024; //散列次数
-
-        ByteSource credentialsSalt = ByteSource.Util.bytes(salt);//盐
-
-        return new SimpleHash(hashAlgorithmName, enablePassword, credentialsSalt, hashIterations);
-    }
-    /**
-     * 加密测试
-     */
-    @Test
-    public void encryption() {
-
-        Object securePassword = encrypt("ealenxie", "admin");
-
-        System.out.println("ealen的加密后密码 : " + securePassword);
-
-        Object zhangsanPassword = encrypt("zhangsan", "12345");
-
-        System.out.println("zhangsan的加密后密码 : " +zhangsanPassword);
-
-        Object lisiPassword = encrypt("lisi", "12345");
-
-        System.out.println("lisi的加密后密码 : " +lisiPassword);
-    }
-}
-```
-2 . 数据库中权限，角色，url过滤器链核心配置参考 ，分别在`UserAuthRealm`和`ShiroConfig`中: 
+ 数据库中权限，角色，url过滤器链核心配置参考 ，分别在`UserAuthRealm`和`ShiroConfig`中: 
 ```java
 
    /**
@@ -138,7 +91,3 @@ public class ShiroTest {
         return filterMap;
     }
 ```
-
-3 . 代码结构参考 : [https://github.com/EalenXie/springcloud-microservice-ddd](https://github.com/EalenXie/springcloud-microservice-ddd)
-
-4 . 博客链接 : [https://www.cnblogs.com/ealenxie/p/10610741.html](https://www.cnblogs.com/ealenxie/p/10610741.html)
